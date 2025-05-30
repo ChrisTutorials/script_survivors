@@ -1,3 +1,7 @@
 # Godot 4+ specific ignores
 .godot/
 /android/
+
+# Keep all files in art except directories
+/art/*
+!/art/*.* 
