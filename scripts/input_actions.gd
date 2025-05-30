@@ -2,7 +2,7 @@
 class_name InputActions
 
 ## Movement actions
-static var LEFT = "left"
-static var RIGHT = "right"
-static var UP = "up"
-static var DOWN = "down"
+static var LEFT := "left"
+static var RIGHT := "right"
+static var UP := "up"
+static var DOWN := "down"
