@@ -1,6 +1,2 @@
-extends LimboState
-
-var playback : AnimationNodeStateMachinePlayback
-
-func _enter() -> void:
-	playback.travel("idle")
+class_name IdleState
+extends BlendAnimationState

@@ -3,12 +3,12 @@ extends CharacterBody2D
 
 ## Default speed for how fast the player should walk
 @export var input : PlayerInput
-@export var walk_speed = 100.0
+@export var walk_speed := 100.0
 
-func _ready():
+func _ready() -> void:
 	assert(input != null, "Player input must be set.")
 
-func _physics_process(delta: float) -> void:
+func _physics_process(_delta: float) -> void:
 	if input.direction:
 		velocity = input.direction * walk_speed
 	else:

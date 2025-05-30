@@ -380,11 +380,10 @@ script = ExtResource("5_ixbpm")
 player = NodePath("..")
 animation_tree = NodePath("../AnimationTree")
 input = NodePath("../PlayerInput")
-states = [NodePath("LimboState")]
+states = [NodePath(".")]
 
 [node name="LimboState" type="LimboState" parent="PlayerHSM"]
 script = ExtResource("6_c6leb")
-animation_name = &"idle"
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="."]
 shape = SubResource("CircleShape2D_ixbpm")

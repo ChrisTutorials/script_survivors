@@ -2,16 +2,25 @@
 class_name PlayerInput
 extends Node
 
-var direction : Vector2
+signal direction_changed(direction : Vector2)
+
+var direction : Vector2 :
+	set(value):
+		if direction == value:
+			return
+			
+		direction = value
+		direction_changed.emit(direction)
 
 ## Update input direction every frame
-func process():
-	direction = Input.get_vector(
-		InputActions.LEFT,
-		InputActions.RIGHT,
-		InputActions.UP,
-		InputActions.DOWN
-	)
+func _process(_delta : float) -> void:
+	pass
 
 func _input(event: InputEvent) -> void:
-	pass
+	if event.is_action(InputActions.LEFT) || event.is_action(InputActions.RIGHT) || event.is_action(InputActions.UP) || event.is_action(InputActions.DOWN):
+		direction = Input.get_vector(
+			InputActions.LEFT,
+			InputActions.RIGHT,
+			InputActions.UP,
+			InputActions.DOWN
+		)

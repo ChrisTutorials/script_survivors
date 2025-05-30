@@ -10,7 +10,7 @@ extends LimboHSM
 ## Input for the player
 @export var input : PlayerInput
 
-@export var states : Array[LimboState] = []
+@export var states : Array[BlendAnimationState] = []
 
 var playback : AnimationNodeStateMachinePlayback
 
@@ -27,10 +27,16 @@ func _setup_hsm() -> void:
 	setup_states()
 	set_initial_state(states[0])
 	initialize(player)
+	self.set_active(true)
 
 func setup_states() -> void:
 	for state in states:
 		if state == null:
 			push_warning("Null state found in states")
+			continue
 		
 		state.playback = playback
+		state.animation_tree = animation_tree
+
+func get_direction() -> Vector2:
+	return input.direction
