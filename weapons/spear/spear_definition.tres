@@ -1,0 +1,42 @@
+[gd_resource type="Resource" script_class="WeaponDefinition" load_steps=8 format=3 uid="uid://b60o8k8ho5v03"]
+
+[ext_resource type="Script" uid="uid://c20jqaf8j8yga" path="res://scripts/weapons/weapon_level.gd" id="1_h6hux"]
+[ext_resource type="Script" uid="uid://sarqay347kuj" path="res://scripts/weapons/weapon_definition.gd" id="2_2m0nt"]
+[ext_resource type="Texture2D" uid="uid://cfxhsahgyecns" path="res://art/Pixel Crawler - Free Pack/Weapons/Wood/Wood.png" id="2_kafub"]
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_a0l6e"]
+atlas = ExtResource("2_kafub")
+region = Rect2(68, 0, 8, 48)
+
+[sub_resource type="Resource" id="Resource_kafub"]
+script = ExtResource("1_h6hux")
+scene_path = "uid://cq2i2iu1r7kn5"
+icon = SubResource("AtlasTexture_a0l6e")
+min_power = 1
+max_power = 10
+projectiles = 1
+cooldown = 1.0
+metadata/_custom_type_script = "uid://c20jqaf8j8yga"
+
+[sub_resource type="Resource" id="Resource_a0l6e"]
+script = ExtResource("1_h6hux")
+scene_path = ""
+min_power = 5
+max_power = 15
+projectiles = 1
+cooldown = 1.0
+metadata/_custom_type_script = "uid://c20jqaf8j8yga"
+
+[sub_resource type="Resource" id="Resource_eric8"]
+script = ExtResource("1_h6hux")
+scene_path = ""
+min_power = 10
+max_power = 20
+projectiles = 2
+cooldown = 1.0
+metadata/_custom_type_script = "uid://c20jqaf8j8yga"
+
+[resource]
+script = ExtResource("2_2m0nt")
+levels = Array[ExtResource("1_h6hux")]([SubResource("Resource_kafub"), SubResource("Resource_a0l6e"), SubResource("Resource_eric8")])
+metadata/_custom_type_script = "uid://sarqay347kuj"

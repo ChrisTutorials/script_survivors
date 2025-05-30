@@ -1,0 +1,8 @@
+[gd_scene load_steps=3 format=3 uid="uid://bergkwrdrng1x"]
+
+[ext_resource type="Script" uid="uid://77sbfqnm3mih" path="res://scripts/weapons/weapon.gd" id="1_v4kad"]
+[ext_resource type="Resource" uid="uid://b60o8k8ho5v03" path="res://weapons/spear/spear_definition.tres" id="2_3baxd"]
+
+[node name="SpearWeapon" type="Node2D"]
+script = ExtResource("1_v4kad")
+definition = ExtResource("2_3baxd")

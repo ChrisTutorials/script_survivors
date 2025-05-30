@@ -2,15 +2,16 @@
 class_name WeaponLoadout
 extends Node2D
 
+@export var sheet : CharacterSheet
 @export var weapons : Array[Weapon] = []
-
-var weapon_timers : Dictionary[Weapon, Timer]
 
 # Called when the node enters the scene tree for the first time.
 func _ready() -> void:
-	pass # Replace with function body.
-
-
-# Called every frame. 'delta' is the elapsed time since the previous frame.
-func _process(delta: float) -> void:
-	pass
+	assert(sheet != null, "A character sheet reference must be set to resolve cooldown timers")
+	
+	for weapon in weapons:
+		if weapon == null:
+			push_warning("Null weapon in WeaponLoadout.")
+			continue
+		
+		weapon.start(sheet)

@@ -64,7 +64,7 @@ func setup_transitions() -> void:
 
 ## Dispatch transition events for when the character starts and stops movement
 ## Passes the signal data to the child state for further processing
-func _on_direction_changed(p_direction : Vector2, p_last : Vector2):
+func _on_direction_changed(p_direction : Vector2, p_last : Vector2) -> void:
 	if p_direction == Vector2.ZERO:
 		dispatch(STOPPED_EVENT)
 	elif p_last == Vector2.ZERO:

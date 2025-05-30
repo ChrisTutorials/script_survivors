@@ -1,18 +1,19 @@
-[gd_scene load_steps=38 format=3 uid="uid://hfsri3rjwwon"]
+[gd_scene load_steps=39 format=3 uid="uid://hfsri3rjwwon"]
 
 [ext_resource type="Script" uid="uid://bsx1fls20b1d2" path="res://scripts/state_machine/player/player.gd" id="1_508ok"]
+[ext_resource type="Script" uid="uid://cavqstgfdchii" path="res://characters/player/character_sheet.gd" id="2_58jvb"]
 [ext_resource type="Texture2D" uid="uid://c5ob500w0y2rh" path="res://art/Pixel Crawler - Free Pack/Entities/Characters/Body_A/Animations/Idle_Base/Idle_Down-Sheet.png" id="2_xxgcw"]
+[ext_resource type="Resource" uid="uid://c0ofss6laivt7" path="res://characters/player/base_stats.tres" id="3_8l73k"]
 [ext_resource type="Texture2D" uid="uid://d2d85051c2j2t" path="res://art/Pixel Crawler - Free Pack/Entities/Characters/Body_A/Animations/Idle_Base/Idle_Side-Sheet.png" id="3_exd8k"]
 [ext_resource type="Script" uid="uid://210spqgkirf8" path="res://scripts/weapons/weapon_loadout.gd" id="3_on558"]
 [ext_resource type="Texture2D" uid="uid://dulx5rkk7v4q2" path="res://art/Pixel Crawler - Free Pack/Entities/Characters/Body_A/Animations/Idle_Base/Idle_Up-Sheet.png" id="4_5dc8e"]
-[ext_resource type="Script" uid="uid://sarqay347kuj" path="res://scripts/weapons/weapon.gd" id="4_gqopd"]
 [ext_resource type="Script" uid="uid://dcoxdywtohbqj" path="res://scripts/state_machine/player/player_input.gd" id="5_dirf7"]
-[ext_resource type="Resource" uid="uid://b60o8k8ho5v03" path="res://weapons/spear/spear.tres" id="5_icpky"]
 [ext_resource type="Texture2D" uid="uid://b4eopbdsl762b" path="res://art/Pixel Crawler - Free Pack/Entities/Characters/Body_A/Animations/Run_Base/Run_Side-Sheet.png" id="5_idpv6"]
 [ext_resource type="Script" uid="uid://c3tiq1o1y5oe0" path="res://scripts/state_machine/player/player_hsm.gd" id="5_ixbpm"]
 [ext_resource type="Script" uid="uid://dfyearmyik1ve" path="res://scripts/state_machine/player/idle_state.gd" id="6_c6leb"]
 [ext_resource type="Texture2D" uid="uid://cspx1f45yajdw" path="res://art/Pixel Crawler - Free Pack/Entities/Characters/Body_A/Animations/Run_Base/Run_Up-Sheet.png" id="6_x5dtk"]
 [ext_resource type="Texture2D" uid="uid://syhutchy6xp" path="res://art/Pixel Crawler - Free Pack/Entities/Characters/Body_A/Animations/Run_Base/Run_Down-Sheet.png" id="7_3t07l"]
+[ext_resource type="PackedScene" uid="uid://bergkwrdrng1x" path="res://weapons/spear/spear_weapon.tscn" id="7_aqrcq"]
 [ext_resource type="Script" uid="uid://tktkcd7qx5rj" path="res://scripts/state_machine/blend_animation_state.gd" id="11_3t07l"]
 
 [sub_resource type="Animation" id="Animation_exd8k"]
@@ -636,14 +637,21 @@ radius = 5.0
 script = ExtResource("1_508ok")
 input = NodePath("PlayerInput")
 
+[node name="CharacterSheet" type="Node" parent="."]
+script = ExtResource("2_58jvb")
+base_stats = ExtResource("3_8l73k")
+
+[node name="WeaponLoadout" type="Marker2D" parent="." node_paths=PackedStringArray("sheet")]
+position = Vector2(0, -6)
+script = ExtResource("3_on558")
+sheet = NodePath("../CharacterSheet")
+
+[node name="SpearWeapon" parent="WeaponLoadout" instance=ExtResource("7_aqrcq")]
+
 [node name="Sprite2D" type="Sprite2D" parent="."]
 position = Vector2(0, -12)
 texture = ExtResource("2_xxgcw")
 hframes = 4
-
-[node name="WeaponLoadout" type="Node2D" parent="."]
-script = ExtResource("3_on558")
-weapons = Array[ExtResource("4_gqopd")]([ExtResource("5_icpky")])
 
 [node name="AnimationPlayer" type="AnimationPlayer" parent="."]
 libraries = {

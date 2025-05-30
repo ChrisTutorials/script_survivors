@@ -16,3 +16,6 @@ extends Resource
 
 ## Number of projectiles to spawn per cast
 @export_range(0, 100, 1, "or_greater")  var projectiles : int = 1
+
+## Base cooldown between weapon casts
+@export_range(0.01, 100, 0.01, "or_greater") var cooldown : float = 1.0
