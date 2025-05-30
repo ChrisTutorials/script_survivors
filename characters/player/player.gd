@@ -1,3 +1,4 @@
+## Controls basic movement for the player character
 class_name Player
 extends CharacterBody2D
 

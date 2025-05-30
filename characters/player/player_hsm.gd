@@ -1,3 +1,5 @@
+## State machine for the player character that uses input
+## to trigger events and send information to the active child state
 class_name PlayerHSM
 extends LimboHSM
 
@@ -10,7 +12,10 @@ extends LimboHSM
 ## Input for the player
 @export var input : PlayerInput
 
+## The standing still state for the player 
 @export var idle_state : BlendAnimationState
+
+## The moving state for the player
 @export var run_state : BlendAnimationState
 
 var states : Array[BlendAnimationState] = []
@@ -36,6 +41,8 @@ func _setup_hsm() -> void:
 	initialize(player)
 	self.set_active(true)
 
+## Find all child states to define states
+## Then give them access to playback and animation tree with direction references
 func setup_states() -> void:
 	for child in get_children():
 		if child is BlendAnimationState:
@@ -49,13 +56,14 @@ func setup_states() -> void:
 		state.playback = playback
 		state.animation_tree = animation_tree
 
+## Create state transitions between different states for
+## when certain events are dispatched in the state machine
 func setup_transitions() -> void:
 	add_transition(run_state, idle_state, STOPPED_EVENT)
 	add_transition(idle_state, run_state, MOVING_EVENT)
 
-func get_direction() -> Vector2:
-	return input.direction
-
+## Dispatch transition events for when the character starts and stops movement
+## Passes the signal data to the child state for further processing
 func _on_direction_changed(p_direction : Vector2, p_last : Vector2):
 	if p_direction == Vector2.ZERO:
 		dispatch(STOPPED_EVENT)
@@ -65,4 +73,4 @@ func _on_direction_changed(p_direction : Vector2, p_last : Vector2):
 	var state := self.get_active_state()
 	
 	if state is BlendAnimationState:
-		state.handle_direction_change(p_direction)
+		state.handle_direction_change(p_direction, p_last)
