@@ -10,27 +10,37 @@ extends LimboHSM
 ## Input for the player
 @export var input : PlayerInput
 
-@export var states : Array[BlendAnimationState] = []
+@export var idle_state : BlendAnimationState
+@export var run_state : BlendAnimationState
 
+var states : Array[BlendAnimationState] = []
 var playback : AnimationNodeStateMachinePlayback
+
+const STOPPED_EVENT := &"stopped"
+const MOVING_EVENT := &"moving"
 
 func _ready() -> void:
 	assert(player != null, "Player agent must be set on the HSM")
 	assert(animation_tree != null, "Animation tree must be set on the HSM")
 	assert(input != null, "Input must be set on the HSM")
-	assert(not states.is_empty(), "Requires at least one LimboState")
 	input.direction_changed.connect(_on_direction_changed)
 	_setup_hsm()
+	assert(not states.is_empty(), "Requires at least one LimboState")
 
 ## Setup initial state and initialize with the player as the agent
 func _setup_hsm() -> void:
 	playback = animation_tree["parameters/playback"]
 	setup_states()
+	setup_transitions()
 	set_initial_state(states[0])
 	initialize(player)
 	self.set_active(true)
 
 func setup_states() -> void:
+	for child in get_children():
+		if child is BlendAnimationState:
+			states.append(child)
+	
 	for state in states:
 		if state == null:
 			push_warning("Null state found in states")
@@ -39,10 +49,19 @@ func setup_states() -> void:
 		state.playback = playback
 		state.animation_tree = animation_tree
 
+func setup_transitions() -> void:
+	add_transition(run_state, idle_state, STOPPED_EVENT)
+	add_transition(idle_state, run_state, MOVING_EVENT)
+
 func get_direction() -> Vector2:
 	return input.direction
 
-func _on_direction_changed(p_direction : Vector2):
+func _on_direction_changed(p_direction : Vector2, p_last : Vector2):
+	if p_direction == Vector2.ZERO:
+		dispatch(STOPPED_EVENT)
+	elif p_last == Vector2.ZERO:
+		dispatch(MOVING_EVENT)
+	
 	var state := self.get_active_state()
 	
 	if state is BlendAnimationState:

@@ -594,10 +594,10 @@ max_space = Vector2(1, 1.1)
 blend_mode = 1
 
 [sub_resource type="AnimationNodeAnimation" id="AnimationNodeAnimation_3t07l"]
-animation = &"run_up"
+animation = &"run_down"
 
 [sub_resource type="AnimationNodeAnimation" id="AnimationNodeAnimation_on558"]
-animation = &"run_down"
+animation = &"run_up"
 
 [sub_resource type="AnimationNodeAnimation" id="AnimationNodeAnimation_gqopd"]
 animation = &"run_left"
@@ -653,13 +653,14 @@ parameters/run/blend_position = Vector2(0, 0)
 [node name="PlayerInput" type="Node" parent="."]
 script = ExtResource("5_dirf7")
 
-[node name="PlayerHSM" type="LimboHSM" parent="." node_paths=PackedStringArray("player", "animation_tree", "input", "states")]
+[node name="PlayerHSM" type="LimboHSM" parent="." node_paths=PackedStringArray("player", "animation_tree", "input", "idle_state", "run_state")]
 blackboard_plan = SubResource("BlackboardPlan_dirf7")
 script = ExtResource("5_ixbpm")
 player = NodePath("..")
 animation_tree = NodePath("../AnimationTree")
 input = NodePath("../PlayerInput")
-states = [NodePath("IdleState")]
+idle_state = NodePath("IdleState")
+run_state = NodePath("RunState")
 
 [node name="IdleState" type="LimboState" parent="PlayerHSM"]
 script = ExtResource("6_c6leb")

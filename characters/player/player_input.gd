@@ -2,15 +2,16 @@
 class_name PlayerInput
 extends Node
 
-signal direction_changed(direction : Vector2)
+signal direction_changed(new : Vector2, last : Vector2)
 
 var direction : Vector2 :
 	set(value):
 		if direction == value:
 			return
-			
+		
+		var old : Vector2 = direction
 		direction = value
-		direction_changed.emit(direction)
+		direction_changed.emit(direction, old)
 
 ## Update input direction every frame
 func _process(_delta : float) -> void:
