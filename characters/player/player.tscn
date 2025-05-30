@@ -1,0 +1,10 @@
+[gd_scene load_steps=3 format=3 uid="uid://hfsri3rjwwon"]
+
+[ext_resource type="Script" uid="uid://bsx1fls20b1d2" path="res://characters/player/player.gd" id="1_508ok"]
+[ext_resource type="Texture2D" uid="uid://c5ob500w0y2rh" path="res://art/Pixel Crawler - Free Pack/Entities/Characters/Body_A/Animations/Idle_Base/Idle_Down-Sheet.png" id="2_xxgcw"]
+
+[node name="Player" type="CharacterBody2D"]
+script = ExtResource("1_508ok")
+
+[node name="Sprite2D" type="Sprite2D" parent="."]
+texture = ExtResource("2_xxgcw")
