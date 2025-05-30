@@ -1,4 +1,4 @@
-[gd_scene load_steps=21 format=3 uid="uid://hfsri3rjwwon"]
+[gd_scene load_steps=22 format=3 uid="uid://hfsri3rjwwon"]
 
 [ext_resource type="Script" uid="uid://bsx1fls20b1d2" path="res://characters/player/player.gd" id="1_508ok"]
 [ext_resource type="Texture2D" uid="uid://c5ob500w0y2rh" path="res://art/Pixel Crawler - Free Pack/Entities/Characters/Body_A/Animations/Idle_Base/Idle_Down-Sheet.png" id="2_xxgcw"]
@@ -349,6 +349,8 @@ blend_mode = 1
 states/idle/node = SubResource("AnimationNodeBlendSpace2D_x5dtk")
 states/idle/position = Vector2(349.6, 100.4)
 
+[sub_resource type="BlackboardPlan" id="BlackboardPlan_dirf7"]
+
 [sub_resource type="CircleShape2D" id="CircleShape2D_ixbpm"]
 radius = 5.0
 
@@ -376,6 +378,7 @@ parameters/idle/blend_position = Vector2(0, 0)
 script = ExtResource("5_dirf7")
 
 [node name="PlayerHSM" type="LimboHSM" parent="." node_paths=PackedStringArray("player", "animation_tree", "input", "states")]
+blackboard_plan = SubResource("BlackboardPlan_dirf7")
 script = ExtResource("5_ixbpm")
 player = NodePath("..")
 animation_tree = NodePath("../AnimationTree")

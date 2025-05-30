@@ -8,12 +8,15 @@ var playback : AnimationNodeStateMachinePlayback
 
 func _enter() -> void:
 	playback.travel(animation_name)
-	
-func _update(delta: float) -> void:
-	## Updates the property direction for the state animation
-	var prop := get_animation_property_path()
-	var direction : Vector2 = get_parent().get_direction()
-	animation_tree.set(prop, direction)
 
 func get_animation_property_path() -> String:
 	return "parameters/%s/blend_position" % animation_name
+
+## Update the animation when the direction changes
+func handle_direction_change(p_direction : Vector2) -> void:
+	if p_direction == Vector2.ZERO:
+		return
+		
+	var prop := get_animation_property_path()
+	var direction : Vector2 = get_parent().get_direction()
+	animation_tree.set(prop, direction)

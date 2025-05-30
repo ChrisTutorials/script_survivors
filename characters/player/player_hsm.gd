@@ -19,6 +19,7 @@ func _ready() -> void:
 	assert(animation_tree != null, "Animation tree must be set on the HSM")
 	assert(input != null, "Input must be set on the HSM")
 	assert(not states.is_empty(), "Requires at least one LimboState")
+	input.direction_changed.connect(_on_direction_changed)
 	_setup_hsm()
 
 ## Setup initial state and initialize with the player as the agent
@@ -40,3 +41,9 @@ func setup_states() -> void:
 
 func get_direction() -> Vector2:
 	return input.direction
+
+func _on_direction_changed(p_direction : Vector2):
+	var state := self.get_active_state()
+	
+	if state is BlendAnimationState:
+		state.handle_direction_change(p_direction)
