@@ -11,8 +11,13 @@ config_version=5
 [application]
 
 config/name="ScriptSurvivors"
+run/main_scene="uid://d3tvkyg5rrcr0"
 config/features=PackedStringArray("4.4", "Mobile")
 config/icon="res://icon.svg"
+
+[debug]
+
+gdscript/warnings/untyped_declaration=1
 
 [editor_plugins]
 

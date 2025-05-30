@@ -2,15 +2,19 @@ class_name Player
 extends CharacterBody2D
 
 ## Default speed for how fast the player should walk
-@export var walk_speed = 300.0
+@export var input : PlayerInput
+@export var walk_speed = 100.0
+
+func _ready():
+	assert(input != null, "Player input must be set.")
 
 func _physics_process(delta: float) -> void:
-	## Player Movement
-	var direction : Vector2 = Input.get_vector(InputActions.LEFT, InputActions.RIGHT, InputActions.UP, InputActions.DOWN)
-	
-	if direction:
-		velocity.x = direction * walk_speed
+	if input.direction:
+		velocity = input.direction * walk_speed
 	else:
-		velocity.x = move_toward(velocity.x, 0, walk_speed)
+		velocity = Vector2(
+			move_toward(velocity.x, 0, walk_speed),
+			move_toward(velocity.y, 0, walk_speed)
+			)
 
 	move_and_slide()
