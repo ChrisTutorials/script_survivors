@@ -1,7 +1,7 @@
 ## LimboState that has access
 ## to animation_tree and the playback
 ## for changing animations and controlling
-## facing direction for the animation_name animation
+## facing direction for the animation_name
 class_name BlendAnimationState
 extends LimboState
 
@@ -22,5 +22,4 @@ func handle_direction_change(p_direction : Vector2, _p_last : Vector2) -> void:
 		return
 		
 	var prop := get_animation_property_path()
-	var direction : Vector2 = get_parent().get_direction()
-	animation_tree.set(prop, direction)
+	animation_tree.set(prop, p_direction)
