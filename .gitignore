@@ -2,6 +2,8 @@
 .godot/
 /android/
 
-# Keep all files in art except directories
-/art/*
-!/art/*.* 
+# Ignore everything inside first-level subdirectories
+/art/*/*
+
+# Allow everything directly under /art
+!/art/*
