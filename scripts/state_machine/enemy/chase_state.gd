@@ -15,7 +15,6 @@ func _setup() -> void:
 
 ## Move towards the player
 func _update(_delta: float) -> void:
-	prints("update_start")
 	var speed := npc.stats.get_speed()
 	var npc_position :=  npc.global_position
 	var player_position := sensor.player.global_position

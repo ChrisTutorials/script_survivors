@@ -4,9 +4,9 @@ extends Area2D
 
 signal hurt_box_hit(box : HurtBox2D)
 
-func _ready():
+func _ready() -> void:
 	area_entered.connect(_on_area_entered)
 
-func _on_area_entered(p_area : Area2D):
+func _on_area_entered(p_area : Area2D) -> void:
 	if p_area is HurtBox2D:
 		hurt_box_hit.emit(p_area)

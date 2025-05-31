@@ -16,7 +16,6 @@ func _ready() -> void:
 	set_initial_state(first)
 	assert(agent != null, "Agent must be set.")
 	self.set_active(true)
-	prints("hsm ready")
 
 func _setup_animation_states() -> void:
 	assert(animation_tree != null, "Animation tree must be set before calling _setup_animation_states()")
