@@ -5,7 +5,7 @@ extends Area2D
 ## Used for damage calculations and health change assignments
 @export var stat_controller : CharacterStatController
 
-func _ready():
+func _ready() -> void:
 	assert(stat_controller != null, "Must assign the stat controller for damage calculation.")
 	stat_controller.alive_changed.connect(_on_alive_changed)
 
@@ -18,10 +18,10 @@ func try_hit(source : Projectile) -> bool:
 		return false
 	
 	var base_damage := source.calculate_damage()
-	var final_damage := stat_controller.calculate_damage(base_damage)
-	var new_hp : int = stat_controller.hp - final_damage
+	var final_damage : int = stat_controller.calculate_damage(base_damage)
+	var new_hp : int = int(stat_controller.hp - final_damage)
 	stat_controller.hp = new_hp
 	return true
 
-func _on_alive_changed(p_alive : bool):
-	monitorable = p_alive
+func _on_alive_changed(p_alive : bool) -> void:
+	set_deferred(&"monitorable", p_alive)
