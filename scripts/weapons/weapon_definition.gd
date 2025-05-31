@@ -10,7 +10,6 @@ func get_level(p_idx : int) -> WeaponLevel:
 ## Finds the weapon instance scene at the highest level at or before the level_idx
 ## It goes downwards in level until it finds a scene it can return
 func get_scene(level_idx : int) -> PackedScene:
-	var higest_level_scene : PackedScene
 	var current_idx := level_idx
 	var found_path : String
 	var loaded_scene : PackedScene

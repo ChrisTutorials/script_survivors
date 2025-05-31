@@ -7,7 +7,7 @@ var direction : Vector2
 ## Statistics for the weapon level
 var level : WeaponLevel
 
-var _launched = false
+var _launched := false
 
 ## Starts moving the projectile in the direction parameter
 func launch(p_direction : Vector2, p_weapon_level : WeaponLevel) -> void:
@@ -15,8 +15,9 @@ func launch(p_direction : Vector2, p_weapon_level : WeaponLevel) -> void:
 	level = p_weapon_level
 	_launched = true
 
-func _physics_process(delta: float) -> void:
+func _physics_process(_delta: float) -> void:
 	if not _launched:
 		return
 		
-	var collided = move_and_collide(direction * level.speed)
+	var collision : KinematicCollision2D = move_and_collide(direction * level.speed)
+	
