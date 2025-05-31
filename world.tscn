@@ -4,6 +4,7 @@
 [ext_resource type="PackedScene" uid="uid://dkjs53j1y8adu" path="res://characters/enemies/orc/orc.tscn" id="2_fj7yv"]
 
 [node name="World" type="Node2D"]
+y_sort_enabled = true
 
 [node name="Player" parent="." groups=["player"] instance=ExtResource("1_f3sb7")]
 

@@ -20,7 +20,7 @@ min_power = 1
 max_power = 10
 projectiles = 1
 speed = 200.0
-cooldown = 1.0
+cooldown = 0.1
 metadata/_custom_type_script = "uid://c20jqaf8j8yga"
 
 [sub_resource type="Resource" id="Resource_a0l6e"]

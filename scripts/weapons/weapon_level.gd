@@ -22,3 +22,6 @@ extends Resource
 
 ## Base cooldown between weapon casts
 @export_range(0.01, 100, 0.01, "or_greater") var cooldown : float = 1.0
+
+## Maximum duration for effects instanced
+@export_range(0.01, 100, 0.01, "or_greater") var duration : float = 5.0

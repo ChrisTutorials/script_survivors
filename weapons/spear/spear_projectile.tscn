@@ -1,24 +1,25 @@
-[gd_scene load_steps=5 format=3 uid="uid://cq2i2iu1r7kn5"]
+[gd_scene load_steps=6 format=3 uid="uid://cq2i2iu1r7kn5"]
 
 [ext_resource type="Script" uid="uid://b8u4s52do8skk" path="res://scripts/weapons/projectile.gd" id="1_axrr0"]
 [ext_resource type="Texture2D" uid="uid://cfxhsahgyecns" path="res://art/Pixel Crawler - Free Pack/Weapons/Wood/Wood.png" id="2_4y4rp"]
+[ext_resource type="Script" uid="uid://cv8xe8lu1hwoe" path="res://scripts/sensors/hit_box_2d.gd" id="3_4y4rp"]
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_i3n6q"]
 atlas = ExtResource("2_4y4rp")
 region = Rect2(68, 0, 8, 48)
 
-[sub_resource type="CapsuleShape2D" id="CapsuleShape2D_i3n6q"]
-radius = 4.0
-height = 14.0
+[sub_resource type="CircleShape2D" id="CircleShape2D_4y4rp"]
 
-[node name="Spear" type="StaticBody2D"]
-collision_layer = 8
-collision_mask = 4
+[node name="Spear" type="Node2D" node_paths=PackedStringArray("hit_boxes")]
 script = ExtResource("1_axrr0")
+hit_boxes = [NodePath("HitBox2D")]
 
 [node name="Sprite2D" type="Sprite2D" parent="."]
 texture = SubResource("AtlasTexture_i3n6q")
 
-[node name="CollisionShape2D" type="CollisionShape2D" parent="."]
-position = Vector2(0, -14)
-shape = SubResource("CapsuleShape2D_i3n6q")
+[node name="HitBox2D" type="Area2D" parent="."]
+script = ExtResource("3_4y4rp")
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="HitBox2D"]
+position = Vector2(0, -15)
+shape = SubResource("CircleShape2D_4y4rp")

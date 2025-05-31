@@ -4,6 +4,8 @@ extends Node
 
 @export var base_stats : BaseStats
 
+var hp : float
+
 ## The minimum cooldown multiplier that can be applied to a base cast speed. 1.0 is 100% normal cooldown time.
 const MINIMUM_CD : float = 0.01
 
@@ -12,6 +14,7 @@ const MINIMUM_WEAPONS_SPEED : float = 0.01
 
 func _ready() -> void:
 	assert(base_stats != null, "Base Stats must be assigned to the CharacterStatController.")
+	hp = base_stats.hp
 
 func get_speed() -> float:
 	return max(0, base_stats.speed)
@@ -27,3 +30,8 @@ func get_weapon_speed_multiplier() -> float:
 ## Gets the power multiplier for a character
 func get_power_multiplier() -> float:
 	return 1 + base_stats.power_percent_bonus
+
+## Calculates the final damage after stats, buffs, debuffs, etc are applied
+func calculate_damage(p_base : float) -> float:
+	return p_base
+	
