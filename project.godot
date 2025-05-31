@@ -26,6 +26,7 @@ enabled=PackedStringArray("res://addons/collapse_folders/plugin.cfg")
 [global_group]
 
 projectiles="Parent node for projectile instances"
+player="The player"
 
 [input]
 

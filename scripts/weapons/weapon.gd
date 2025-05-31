@@ -24,7 +24,7 @@ func _ready() -> void:
 
 func start(p_loadout : WeaponLoadout) -> void:
 	_loadout = p_loadout
-	update_cooldown(_loadout.sheet)
+	update_cooldown(_loadout.stats)
 	timer.start()
 	
 	assert(_loadout.input != null, "Weapons depend on the WeaponLoadout input reference to work.")
@@ -40,14 +40,14 @@ func cast(p_direction : Vector2) -> void:
 		var rotate_angle := _loadout.input.facing.angle() + PI / 2 # 90 Degrees towards the right
 		instance.rotate(rotate_angle)
 		var level := definition.get_level(level_idx)
-		var instance_stats := ProjectileCalculator.calculate_stats(level, _loadout.sheet)
+		var instance_stats := ProjectileCalculator.calculate_stats(level, _loadout.stats)
 		instance.launch(p_direction, instance_stats)
 	else:
 		push_warning("Tried to instane node %s but it is no Projectiles type. Removing..." % instance)
 		instance.free()
 
 ## Calculate the cooldown per cast and set the timers wait time to that cooldown duration
-func update_cooldown(p_sheet : CharacterSheet) -> void:
+func update_cooldown(p_sheet : CharacterStatController) -> void:
 	var base := definition.levels[level_idx].cooldown
 	var percent_modifier := p_sheet.get_cooldown_multiplier()
 	var cooldown : float = base * percent_modifier

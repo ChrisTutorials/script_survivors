@@ -637,14 +637,14 @@ radius = 5.0
 script = ExtResource("1_508ok")
 input = NodePath("PlayerInput")
 
-[node name="CharacterSheet" type="Node" parent="."]
+[node name="CharacterStatController" type="Node" parent="."]
 script = ExtResource("2_58jvb")
 base_stats = ExtResource("3_8l73k")
 
-[node name="WeaponLoadout" type="Marker2D" parent="." node_paths=PackedStringArray("sheet", "input")]
+[node name="WeaponLoadout" type="Marker2D" parent="." node_paths=PackedStringArray("stats", "input")]
 position = Vector2(0, -6)
 script = ExtResource("3_on558")
-sheet = NodePath("../CharacterSheet")
+stats = NodePath("../CharacterStatController")
 input = NodePath("../PlayerInput")
 
 [node name="SpearWeapon" parent="WeaponLoadout" instance=ExtResource("7_aqrcq")]

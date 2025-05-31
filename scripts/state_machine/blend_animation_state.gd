@@ -3,15 +3,9 @@
 ## for changing animations and controlling
 ## facing direction for the animation_name
 class_name BlendAnimationState
-extends LimboState
+extends AnimationState
 
-@export var animation_name : StringName = &""
 
-var animation_tree : AnimationTree
-var playback : AnimationNodeStateMachinePlayback
-
-func _enter() -> void:
-	playback.travel(animation_name)
 
 func get_animation_property_path() -> String:
 	return "parameters/%s/blend_position" % animation_name

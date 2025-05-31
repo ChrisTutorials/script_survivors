@@ -1,5 +1,5 @@
 ## Handles runtime calculation for effective character statstics
-class_name CharacterSheet
+class_name CharacterStatController
 extends Node
 
 @export var base_stats : BaseStats
@@ -9,6 +9,12 @@ const MINIMUM_CD : float = 0.01
 
 ## Absolute minimum weapon speed multiplier
 const MINIMUM_WEAPONS_SPEED : float = 0.01
+
+func _ready() -> void:
+	assert(base_stats != null, "Base Stats must be assigned to the CharacterStatController.")
+
+func get_speed() -> float:
+	return max(0, base_stats.speed)
 
 ## Gets the effective cooldown reduction for the character
 func get_cooldown_multiplier() -> float:

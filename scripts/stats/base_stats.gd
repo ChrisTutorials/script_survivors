@@ -2,6 +2,7 @@
 class_name BaseStats
 extends Resource
 
+@export var speed : float = 100.0
 @export var hp : int = 10
 @export var cooldown_reduction : int = 0
 

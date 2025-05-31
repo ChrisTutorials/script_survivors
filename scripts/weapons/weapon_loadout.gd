@@ -2,14 +2,14 @@
 class_name WeaponLoadout
 extends Node2D
 
-@export var sheet : CharacterSheet
+@export var stats : CharacterStatController
 @export var input : PlayerInput
 
 var weapons : Array[Weapon] = []
 
 # Called when the node enters the scene tree for the first time.
 func _ready() -> void:
-	assert(sheet != null, "A character sheet reference must be set to resolve cooldown timers")
+	assert(stats != null, "A character stats reference must be set to resolve cooldown timers")
 	
 	for child in get_children():
 		if child is not Weapon:

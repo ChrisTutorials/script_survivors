@@ -1,13 +1,23 @@
-[gd_scene load_steps=2 format=3 uid="uid://d3tvkyg5rrcr0"]
+[gd_scene load_steps=3 format=3 uid="uid://d3tvkyg5rrcr0"]
 
 [ext_resource type="PackedScene" uid="uid://hfsri3rjwwon" path="res://characters/player/player.tscn" id="1_f3sb7"]
+[ext_resource type="PackedScene" uid="uid://dkjs53j1y8adu" path="res://characters/enemies/orc/orc.tscn" id="2_fj7yv"]
 
 [node name="World" type="Node2D"]
 
-[node name="Player" parent="." instance=ExtResource("1_f3sb7")]
+[node name="Player" parent="." groups=["player"] instance=ExtResource("1_f3sb7")]
 
 [node name="Camera2D" type="Camera2D" parent="."]
 zoom = Vector2(3, 3)
 
 [node name="Projectiles" type="Node2D" parent="." groups=["projectiles"]]
 metadata/_edit_lock_ = true
+
+[node name="Orc" parent="." instance=ExtResource("2_fj7yv")]
+position = Vector2(-139, -6)
+
+[node name="Orc2" parent="." instance=ExtResource("2_fj7yv")]
+position = Vector2(128, 1)
+
+[node name="Orc3" parent="." instance=ExtResource("2_fj7yv")]
+position = Vector2(3, 84)
