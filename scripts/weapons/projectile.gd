@@ -9,6 +9,15 @@ var direction : Vector2
 ## Runtime stats for this instance of the weapon projectile
 var stats : ProjectileStats
 
+## Number of times the projectile has hit a target
+var hits : int = 0 :
+	set(value):
+		hits = value
+		
+		## Remove from scene once hits max exceeded
+		if stats.are_hits_limited() && hits >= stats.max_hits:
+			queue_free()
+
 var _launched := false
 var _random := RandomNumberGenerator.new()
 
@@ -40,4 +49,7 @@ func _process(delta: float) -> void:
 	self.translate(change)
 
 func _on_hit(p_box : HurtBox2D) -> void:
-	p_box.hit(self)
+	var success := p_box.try_hit(self)
+	
+	if success:
+		hits += 1

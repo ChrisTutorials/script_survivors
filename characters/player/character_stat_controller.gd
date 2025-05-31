@@ -2,9 +2,27 @@
 class_name CharacterStatController
 extends Node
 
+signal alive_changed(alive : bool)
+
 @export var base_stats : BaseStats
 
-var hp : float
+## The health points the object has left
+var hp : float :
+	set(value):
+		if hp == value:
+			return
+		
+		hp = value
+		alive = hp > 0
+
+## Whether the object is alive
+var alive : bool = true :
+	set(value):
+		if alive == value:
+			return
+		
+		alive = value
+		alive_changed.emit(alive)
 
 ## The minimum cooldown multiplier that can be applied to a base cast speed. 1.0 is 100% normal cooldown time.
 const MINIMUM_CD : float = 0.01
@@ -32,6 +50,6 @@ func get_power_multiplier() -> float:
 	return 1 + base_stats.power_percent_bonus
 
 ## Calculates the final damage after stats, buffs, debuffs, etc are applied
-func calculate_damage(p_base : float) -> float:
-	return p_base
+func calculate_damage(p_base : float) -> int:
+	return roundi(p_base)
 	

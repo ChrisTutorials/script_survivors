@@ -14,8 +14,8 @@ extends Resource
 ## Maximum base effect the weapon can do
 @export_range(0, 100, 1, "or_greater") var max_power : int = 10
 
-## Number of projectiles to spawn per cast
-@export_range(0, 100, 1, "or_greater")  var projectiles : int = 1
+## Number of hits each projectile can do. 0 is considered infinite.
+@export_range(0, 100, 1, "or_greater") var max_hits : int = 1
 
 ## Base speed of the weapon at this level
 @export var speed : float = 0.0
@@ -25,3 +25,6 @@ extends Resource
 
 ## Maximum duration for effects instanced
 @export_range(0.01, 100, 0.01, "or_greater") var duration : float = 5.0
+
+## Number of projectiles to spawn per cast
+@export_range(0, 100, 1, "or_greater")  var projectiles : int = 1

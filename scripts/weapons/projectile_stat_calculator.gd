@@ -7,4 +7,5 @@ static func calculate_stats(p_weapon_level : WeaponLevel, p_character_sheet : Ch
 	stats.power_min = int(p_weapon_level.min_power * p_character_sheet.get_power_multiplier())
 	stats.power_max = int(p_weapon_level.max_power * p_character_sheet.get_power_multiplier())
 	stats.speed = p_weapon_level.speed * p_character_sheet.get_weapon_speed_multiplier()
+	stats.max_hits = p_weapon_level.max_hits
 	return stats

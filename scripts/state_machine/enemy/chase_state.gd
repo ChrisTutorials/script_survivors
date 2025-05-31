@@ -11,7 +11,6 @@ func _setup() -> void:
 	
 	assert(sensor != null, "Sensor must be set for ChaseState to resolve player location.")
 	assert(agent is NPC, "Agent must be an NPC for ChaseState")
-	prints("State ready")
 
 ## Move towards the player
 func _update(_delta: float) -> void:

@@ -1,4 +1,4 @@
-[gd_scene load_steps=22 format=3 uid="uid://dkjs53j1y8adu"]
+[gd_scene load_steps=23 format=3 uid="uid://dkjs53j1y8adu"]
 
 [ext_resource type="Script" uid="uid://dt8lbiob1i5mt" path="res://characters/npc.gd" id="1_cl781"]
 [ext_resource type="Texture2D" uid="uid://c7oex0i7k8bpe" path="res://art/Pixel Crawler - Free Pack/Entities/Mobs/Orc Crew/Orc/Idle/Idle-Sheet.png" id="1_h6x6k"]
@@ -9,6 +9,7 @@
 [ext_resource type="Script" uid="uid://7lqsmalgxnxl" path="res://scripts/sensors/player_sensor.gd" id="3_yr213"]
 [ext_resource type="Script" uid="uid://coql0qjujcm1j" path="res://scripts/state_machine/enemy/chase_state.gd" id="5_cl781"]
 [ext_resource type="Script" uid="uid://ddf4dq6pxogap" path="res://scripts/object/hurt_box_2d.gd" id="9_s72he"]
+[ext_resource type="Script" uid="uid://c50c2ain62f2n" path="res://scripts/state_machine/animation_state.gd" id="9_xuuv2"]
 
 [sub_resource type="Resource" id="Resource_s72he"]
 script = ExtResource("3_aaeqc")
@@ -281,6 +282,11 @@ script = ExtResource("5_cl781")
 sensor = NodePath("../../PlayerSensor")
 animation_name = &"run"
 metadata/_custom_type_script = "uid://tktkcd7qx5rj"
+
+[node name="AnimationState" type="LimboState" parent="EnemyHSM"]
+script = ExtResource("9_xuuv2")
+animation_name = &"death"
+metadata/_custom_type_script = "uid://c50c2ain62f2n"
 
 [node name="AnimationTree" type="AnimationTree" parent="."]
 tree_root = SubResource("AnimationNodeStateMachine_cl781")

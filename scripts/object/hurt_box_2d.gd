@@ -7,11 +7,21 @@ extends Area2D
 
 func _ready():
 	assert(stat_controller != null, "Must assign the stat controller for damage calculation.")
+	stat_controller.alive_changed.connect(_on_alive_changed)
 
 ## Deal damage to the target. Runs calculations through the source weapon and then applied to the character stat controller
 ## to finalize the amount and apply to the HP
-func hit(source : Projectile) -> void:
+##
+## Returns true if hit was successful, or false if hurtbox skipped
+func try_hit(source : Projectile) -> bool:
+	if not stat_controller.alive:
+		return false
+	
 	var base_damage := source.calculate_damage()
 	var final_damage := stat_controller.calculate_damage(base_damage)
-	stat_controller.hp -= final_damage
-	prints(final_damage)
+	var new_hp : int = stat_controller.hp - final_damage
+	stat_controller.hp = new_hp
+	return true
+
+func _on_alive_changed(p_alive : bool):
+	monitorable = p_alive
