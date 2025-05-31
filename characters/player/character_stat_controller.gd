@@ -23,6 +23,9 @@ var alive : bool = true :
 		
 		alive = value
 		alive_changed.emit(alive)
+		
+## The object that this stats controller represents
+var object : Node2D
 
 ## The minimum cooldown multiplier that can be applied to a base cast speed. 1.0 is 100% normal cooldown time.
 const MINIMUM_CD : float = 0.01
@@ -31,6 +34,9 @@ const MINIMUM_CD : float = 0.01
 const MINIMUM_WEAPONS_SPEED : float = 0.01
 
 func _ready() -> void:
+	object = get_parent()
+	assert(object is Node2D, "Owning object should be located as the parent of this node.")
+	
 	assert(base_stats != null, "Base Stats must be assigned to the CharacterStatController.")
 	hp = base_stats.hp
 

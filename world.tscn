@@ -1,10 +1,21 @@
-[gd_scene load_steps=3 format=3 uid="uid://d3tvkyg5rrcr0"]
+[gd_scene load_steps=5 format=3 uid="uid://d3tvkyg5rrcr0"]
 
 [ext_resource type="PackedScene" uid="uid://hfsri3rjwwon" path="res://characters/player/player.tscn" id="1_f3sb7"]
+[ext_resource type="Script" uid="uid://drh3aycj4c38s" path="res://scripts/systems/floating_combat_text_system.gd" id="1_tlwt5"]
+[ext_resource type="Script" uid="uid://rfrjmscgmdmp" path="res://combat_system.gd" id="2_aqk2v"]
 [ext_resource type="PackedScene" uid="uid://dkjs53j1y8adu" path="res://characters/enemies/orc/orc.tscn" id="2_fj7yv"]
 
 [node name="World" type="Node2D"]
 y_sort_enabled = true
+
+[node name="Systems" type="Node" parent="."]
+
+[node name="FloatingCombatTextSystem" type="Node" parent="Systems"]
+script = ExtResource("1_tlwt5")
+text_scene_path = "uid://b3e3id8hfnefp"
+
+[node name="CombatSystem" type="Node" parent="Systems"]
+script = ExtResource("2_aqk2v")
 
 [node name="Player" parent="." groups=["player"] instance=ExtResource("1_f3sb7")]
 

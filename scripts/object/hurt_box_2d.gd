@@ -21,6 +21,7 @@ func try_hit(source : Projectile) -> bool:
 	var final_damage : int = stat_controller.calculate_damage(base_damage)
 	var new_hp : int = int(stat_controller.hp - final_damage)
 	stat_controller.hp = new_hp
+	CombatSystem.instance.health_change.emit(stat_controller.object, final_damage)
 	return true
 
 func _on_alive_changed(p_alive : bool) -> void:
