@@ -12,5 +12,8 @@ static var instance : CombatSystem :
 		
 		instance = value
 
-func _init():
+func _init() -> void:
 	instance = self
+
+func report_change(object : Node2D, change : int) -> void:
+	health_change.emit(object, change)

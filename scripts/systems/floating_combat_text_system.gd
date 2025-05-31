@@ -6,7 +6,7 @@ extends Node
 
 var text_scene : PackedScene
 
-func _ready():
+func _ready() -> void:
 	CombatSystem.instance.health_change.connect(_on_health_changed)
 	assert(text_scene_path != null, "Must assign a FloatingCombatText scene")
 	assert(FileAccess.file_exists(text_scene_path), "Invalid file at path %s" % text_scene_path)

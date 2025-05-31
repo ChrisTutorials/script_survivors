@@ -10,7 +10,9 @@ y_sort_enabled = true
 
 [node name="Systems" type="Node" parent="."]
 
-[node name="FloatingCombatTextSystem" type="Node" parent="Systems"]
+[node name="FloatingCombatTextSystem" type="Control" parent="Systems"]
+layout_mode = 3
+anchors_preset = 0
 script = ExtResource("1_tlwt5")
 text_scene_path = "uid://b3e3id8hfnefp"
 
