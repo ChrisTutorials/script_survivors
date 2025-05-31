@@ -17,4 +17,4 @@ func _ready() -> void:
 		
 		if child is Weapon:
 			weapons.append(child)	
-			child.start(sheet)
+			child.start(self)

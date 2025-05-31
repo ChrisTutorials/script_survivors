@@ -7,23 +7,27 @@ var level_idx : int = 0
 
 @export var definition : WeaponDefinition
 
-var input : PlayerInput
 var timer : Timer
-var _parent : WeaponLoadout
 
+var _loadout : WeaponLoadout
+var _weapons_parent : Node2D
+
+const PROJECTILES_GROUP = "projectiles"
 
 func _ready() -> void:
-	_parent = get_parent()
-	assert(_parent.input != null, "Weapons depend on the WeaponLoadout input reference to work.")
+	_weapons_parent = get_tree().get_first_node_in_group(PROJECTILES_GROUP)
 	
 	timer = Timer.new()
 	add_child(timer)
 	timer.timeout.connect(_on_timer_timeout)
 	assert(timer.is_stopped(), "Don't start until start is called.")
 
-func start(p_sheet : CharacterSheet) -> void:
-	update_cooldown(p_sheet)
+func start(p_loadout : WeaponLoadout) -> void:
+	_loadout = p_loadout
+	update_cooldown(_loadout.sheet)
 	timer.start()
+	
+	assert(_loadout.input != null, "Weapons depend on the WeaponLoadout input reference to work.")
 
 ## Creates the projectile instance(s) for the weapon in the game world
 func cast(p_direction : Vector2) -> void:
@@ -31,7 +35,14 @@ func cast(p_direction : Vector2) -> void:
 	var instance : Node2D = scene.instantiate()
 	
 	if instance is Projectile:
-		instance.launch(p_direction, definition.get_level(level_idx))
+		_weapons_parent.add_child(instance)
+		instance.global_position = _loadout.global_position
+		var level := definition.get_level(level_idx)
+		var instance_stats := ProjectileCalculator.calculate_stats(level, _loadout.sheet)
+		instance.launch(p_direction, instance_stats)
+	else:
+		push_warning("Tried to instane node %s but it is no Projectiles type. Removing..." % instance)
+		instance.free()
 
 ## Calculate the cooldown per cast and set the timers wait time to that cooldown duration
 func update_cooldown(p_sheet : CharacterSheet) -> void:
@@ -42,4 +53,4 @@ func update_cooldown(p_sheet : CharacterSheet) -> void:
 	timer.wait_time = cooldown
 
 func _on_timer_timeout() -> void:
-	cast(_parent.input.direction)
+	cast(_loadout.input.direction)

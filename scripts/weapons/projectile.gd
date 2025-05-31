@@ -4,20 +4,19 @@ extends StaticBody2D
 ## Direction the projectile is moving
 var direction : Vector2
 
-## Statistics for the weapon level
-var level : WeaponLevel
+## Runtime stats for this instance of the weapon projectile
+var stats : ProjectileStats
 
 var _launched := false
 
 ## Starts moving the projectile in the direction parameter
-func launch(p_direction : Vector2, p_weapon_level : WeaponLevel) -> void:
+func launch(p_direction : Vector2, p_stats : ProjectileStats) -> void:
 	direction = p_direction
-	level = p_weapon_level
+	stats = p_stats
 	_launched = true
 
 func _physics_process(_delta: float) -> void:
 	if not _launched:
 		return
 		
-	var collision : KinematicCollision2D = move_and_collide(direction * level.speed)
-	
+	var collision : KinematicCollision2D = move_and_collide(direction * stats.speed)

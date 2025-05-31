@@ -8,3 +8,6 @@
 
 [node name="Camera2D" type="Camera2D" parent="."]
 zoom = Vector2(3, 3)
+
+[node name="Projectiles" type="Node2D" parent="." groups=["projectiles"]]
+metadata/_edit_lock_ = true
