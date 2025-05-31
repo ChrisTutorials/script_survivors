@@ -37,6 +37,8 @@ func cast(p_direction : Vector2) -> void:
 	if instance is Projectile:
 		_weapons_parent.add_child(instance)
 		instance.global_position = _loadout.global_position
+		var rotate_angle := _loadout.input.facing.angle() + PI / 2 # 90 Degrees towards the right
+		instance.rotate(rotate_angle)
 		var level := definition.get_level(level_idx)
 		var instance_stats := ProjectileCalculator.calculate_stats(level, _loadout.sheet)
 		instance.launch(p_direction, instance_stats)
