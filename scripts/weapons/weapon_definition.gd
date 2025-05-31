@@ -2,6 +2,9 @@
 class_name WeaponDefinition
 extends Resource
 
+## Default icon for the weapon
+@export var icon : Texture2D
+
 @export var levels : Array[WeaponLevel]
 
 func get_level(p_idx : int) -> WeaponLevel:

@@ -8,5 +8,5 @@ var power_min : int
 ## Maximum effect that the projectile can do per hit
 var power_max : int
 
-## Speed at which the projectile travels
+## Speed at which the projectile travels (if any)
 var speed : float

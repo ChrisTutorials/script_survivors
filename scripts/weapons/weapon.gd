@@ -53,4 +53,4 @@ func update_cooldown(p_sheet : CharacterSheet) -> void:
 	timer.wait_time = cooldown
 
 func _on_timer_timeout() -> void:
-	cast(_loadout.input.direction)
+	cast(_loadout.input.facing)

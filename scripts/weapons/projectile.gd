@@ -15,8 +15,8 @@ func launch(p_direction : Vector2, p_stats : ProjectileStats) -> void:
 	stats = p_stats
 	_launched = true
 
-func _physics_process(_delta: float) -> void:
+func _physics_process(delta: float) -> void:
 	if not _launched:
 		return
 		
-	var collision : KinematicCollision2D = move_and_collide(direction * stats.speed)
+	var collision : KinematicCollision2D = move_and_collide(direction * stats.speed * delta)

@@ -29,6 +29,7 @@ func _ready() -> void:
 	assert(animation_tree != null, "Animation tree must be set on the HSM")
 	assert(input != null, "Input must be set on the HSM")
 	input.direction_changed.connect(_on_direction_changed)
+	input.facing_changed.connect(_on_facing_changed)
 	_setup_hsm()
 	assert(not states.is_empty(), "Requires at least one LimboState")
 
@@ -69,8 +70,7 @@ func _on_direction_changed(p_direction : Vector2, p_last : Vector2) -> void:
 		dispatch(STOPPED_EVENT)
 	elif p_last == Vector2.ZERO:
 		dispatch(MOVING_EVENT)
-	
-	var state := self.get_active_state()
-	
-	if state is BlendAnimationState:
-		state.handle_direction_change(p_direction, p_last)
+		
+func _on_facing_changed(p_facing : Vector2, p_last : Vector2) -> void:
+	for state in states:
+		state.handle_direction_change(p_facing, p_last)

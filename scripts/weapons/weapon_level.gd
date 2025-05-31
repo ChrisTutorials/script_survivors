@@ -18,7 +18,7 @@ extends Resource
 @export_range(0, 100, 1, "or_greater")  var projectiles : int = 1
 
 ## Base speed of the weapon at this level
-@export var speed : float = 200.0
+@export var speed : float = 0.0
 
 ## Base cooldown between weapon casts
 @export_range(0.01, 100, 0.01, "or_greater") var cooldown : float = 1.0
