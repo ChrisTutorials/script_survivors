@@ -634,6 +634,7 @@ states/run/position = Vector2(495.2, 94.8)
 radius = 5.0
 
 [node name="Player" type="CharacterBody2D" node_paths=PackedStringArray("input", "stats")]
+collision_layer = 2
 script = ExtResource("1_508ok")
 input = NodePath("PlayerInput")
 stats = NodePath("CharacterStatController")
