@@ -14,12 +14,13 @@ func _ready() -> void:
 	assert(text_scene != null, "PackedScene should be loaded but wasn't")
 
 ## Report a change to the system to display text
-func report_change(p_object : Node2D, p_change : int) -> void:
+func create_change_text(p_object : Node2D, p_change : int) -> void:
 	var text_instance : Control = text_scene.instantiate()
 	add_child(text_instance)
 	text_instance.global_position = p_object.global_position
 	var new_text := str(p_change)
 	text_instance.set_text(new_text)
+	text_instance.play()
 
 func _on_health_changed(p_obj : Node2D, p_change : int) -> void:
-	report_change(p_obj, p_change)
+	create_change_text(p_obj, p_change)

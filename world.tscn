@@ -10,14 +10,12 @@ y_sort_enabled = true
 
 [node name="Systems" type="Node" parent="."]
 
-[node name="FloatingCombatTextSystem" type="Control" parent="Systems"]
-layout_mode = 3
-anchors_preset = 0
-script = ExtResource("1_tlwt5")
-text_scene_path = "uid://b3e3id8hfnefp"
-
 [node name="CombatSystem" type="Node" parent="Systems"]
 script = ExtResource("2_aqk2v")
+
+[node name="FloatingCombatTextSystem" type="Node" parent="Systems"]
+script = ExtResource("1_tlwt5")
+text_scene_path = "uid://b3e3id8hfnefp"
 
 [node name="Player" parent="." groups=["player"] instance=ExtResource("1_f3sb7")]
 
