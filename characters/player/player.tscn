@@ -649,6 +649,7 @@ stats = NodePath("../CharacterStatController")
 input = NodePath("../PlayerInput")
 
 [node name="SpearWeapon" parent="WeaponLoadout" instance=ExtResource("7_aqrcq")]
+position = Vector2(5, 5)
 
 [node name="Sprite2D" type="Sprite2D" parent="."]
 position = Vector2(0, -12)
